@@ -1,0 +1,244 @@
+<!DOCTYPE hvtml>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<title>Zero-shot Voice Conversion via Speech Generation and Understanding based on Language Model</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="TODO: title">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://github.com/kerwinchao/zslvc-lm.github.io//">
+<meta property="og:url" content="https://github.com/kerwinchao/zslvc-lm.github.io//">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1001.0" data-gr-ext-installed="">
+    <section class="page-header">
+    <!-- <h1 class="project-name">Demo PAGE</h1> -->
+    <!-- <h2 class="project-tagline"></h2> -->
+      
+      
+    </section>
+
+<section class="main-content">
+    <h1 id=""><center>Zero-shot Voice Conversion via Context-enhanced Speech Generation based on Language Model</center></h1>
+    <center> Zhichao Wang<sup>1</sup>, Yuanzhe Chen<sup>2</sup>, Tang Li<sup>2</sup>  Lei Xie<sup>1</sup>, Qiao Tian<sup>2</sup>, Yuping Wang<sup>2</sup> </center>
+    <center> <sup>1</sup> Audio, Speech and Language Processing Group (ASLP@NPU), School of Computer Science, Northwestern Polytechnical University, Xi'an, China</center>
+    <center> <sup>2</sup> Speech, Audio, and Music Intelligence (SAMI) Group, ByteDance Inc., Shanghai, China</center>
+
+<h2>Contents</h2>
+<ul>
+  <li><a href="#abstract">Abstract</a></li>
+  <li><a href="#system">System Description</a></li>
+  <li><a href="#ID">Demos</a></li>
+  <li><a href="#MD">More Demos</a></li>
+</ul>
+
+<h2 id="abstract">1. Abstract<a name="abstract"></a></h2>
+<p>Zero-shot voice conversion (VC) converts source speech into any speaker's voice using only one utterance without model updates. Existing methods struggle with limited speaker diversity in small high-quality speech data, and well-designed disentanglement structures limit model capacity for large speech data. Recently, language model-based methods have achieved impressive performance in zero-shot audio generation. However, the long and inadequately decoupled input in VC makes it challenging for the language model to capture context and speaker information, resulting in unstable pronunciation and speaker similarity. In this letter, we propose LCG-VC, which achieves zero-shot VC by integrating 
+context enhanced speech generation based on language model. Specifically, LCG-VC is performed as a two-stage language modeling to convert coarse codec acoustic tokens and reconstruct the fine sequentially. For coarse acoustic modeling, to enhance context learning and facilitate better disentanglement between content and speaker, we utilize a masked prefix language model. This model is achieved by a mask prediction strategy with two types of language modeling masks to recover masked content with learned context and generate target speech from speaker timbre and corrupt content. Besides, an external language model is introduced further to ensure speech generation stability with encoded local acoustic context. This model utilizes window attention to understand the local relation in acoustic space and participate in coarse acoustic modeling. Finally, a non-autoregressive prefix language model reconstructs fine acoustic tokens from the coarse. Experiments on large-scale speech data show that LCG-VC outperforms the baseline system on the zero-shot VC, and the ablation analysis indicates the good design of LCG-VC. </p>
+<br><br>
+
+<center><img src='fig/framework.jpg' width=400px></center>
+<center>
+<tr>
+  <!-- <td style="text-align: center; width: 150px;" rowspan=2 colspan=2><img src='fig/framework.jpg' width=500px></td> -->
+  <td style="text-align: center; width: 150px;" rowspan=1><img src='fig/mlm.jpg' width=500px></td>
+    <td style="text-align: center; width: 150px;" rowspan=1><img src='fig/elm.jpg' width=500px></td>
+</tr>
+</center>
+
+<h2>2. System Description<a name="system"></a></h2>
+<blockquote>
+Comparison Systems
+<ul>
+<li>VALL-E: text-based topline</li>
+<li>AudioLM-VC: a varint of AuidoLM for zero-shot VC</li>
+<li>LCG-VC: our proposed model</li>
+</ul>
+</blockquote>
+<h2>3. Demos <a name="ID"></a></h2>
+<table>
+  <tbody>
+    <tr>
+        <td style="text-align: center; width: 150px;" rowspan=2><strong>Target Speaker<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=2><strong>Source Speech<strong></td>
+        <td style="text-align: center; width: 150px;" colspan=1><strong>Text-based Topline<strong></td>
+      <td style="text-align: center; width: 150px;" colspan=2><strong>Zero-shot VC Methods<strong></td>
+        <td style="text-align: center; width: 150px;" colspan=2><strong>Abalation<strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>VALL-E<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>AudioLM-VC<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>LCG-VC (Proposed)<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>w/o MPLM<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>w/o ELM</strong><strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/bdl_arctic_a0006_p315_046.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+  
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/p225_004_bdl_arctic_a0002.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/LGU-VC/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woELM/rms_arctic_a0019_p225_007.wav"></audio></td>
+  
+
+  </tr>
+
+
+  </tbody>
+</table>
+
+
+
+<h2>4. More Demos (Only for Academic) <a name="MD"></a></h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td style="text-align: center; width: 150px;" rowspan=2><strong>Source Speech<strong></td>
+        <td style="text-align: center; width: 150px;" colspan=4><strong>English Speaker<strong></td>
+          <td style="text-align: center; width: 150px;" colspan=3><strong>Chinese Speaker<strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Obama<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/obama_08.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Tom<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/Tom_Hiddleston.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Emma<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/emma.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Benidict</strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/Benedict_R.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>LX<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/luo_01.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>LYH<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/lyh_01.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>LZL<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/lzl_112001.wav"></audio></td>
+    </tr>
+    <tr>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0024_6db.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_obama_08.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/bdl_arctic_a0024_Tom_Hiddleston.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_emma.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_Benedict_R.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_luo_01.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_lyh_01.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_lzl_112001.wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF4_ENG_0048_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_obama_08.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/EF4_ENG_0048_0_Tom_Hiddleston.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_emma.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_Benedict_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_luo_01.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_lyh_01.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_lzl_112001.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EM5_ENG_0018_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_obama_08.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/EM5_ENG_0018_0_Tom_Hiddleston.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_emma.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_Benedict_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_luo_01.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_lyh_01.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_lzl_112001.wav"></audio></td>
+
+
+  </tr>
+
+
+  </tbody>
+</table>
+
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+</body></html>
