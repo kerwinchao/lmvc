@@ -23,8 +23,8 @@
     </section>
 
 <section class="main-content">
-    <h1 id=""><center>Zero-shot Voice Conversion via Context-enhanced Speech Generation based on Language Model</center></h1>
-    <center> Zhichao Wang<sup>1</sup>, Yuanzhe Chen<sup>2</sup>, Tang Li<sup>2</sup>  Lei Xie<sup>1</sup>, Qiao Tian<sup>2</sup>, Yuping Wang<sup>2</sup> </center>
+    <h1 id=""><center>Zero-shot Voice Conversion via Speech Generation based on Language Model</center></h1>
+    <center> Zhichao Wang<sup>1</sup>, Yuanzhe Chen<sup>2</sup>, Qiuqiang Kong<sup>2</sup>, Lei Xie<sup>1</sup>, Qiao Tian<sup>2</sup>, Yuping Wang<sup>2</sup> </center>
     <center> <sup>1</sup> Audio, Speech and Language Processing Group (ASLP@NPU), School of Computer Science, Northwestern Polytechnical University, Xi'an, China</center>
     <center> <sup>2</sup> Speech, Audio, and Music Intelligence (SAMI) Group, ByteDance Inc., Shanghai, China</center>
 
@@ -37,8 +37,7 @@
 </ul>
 
 <h2 id="abstract">1. Abstract<a name="abstract"></a></h2>
-<p>Zero-shot voice conversion (VC) converts source speech into any speaker's voice using only one utterance without model updates. Existing methods struggle with limited speaker diversity in small high-quality speech data, and well-designed disentanglement structures limit model capacity for large speech data. Recently, language model-based methods have achieved impressive performance in zero-shot audio generation. However, the long and inadequately decoupled input in VC makes it challenging for the language model to capture context and speaker information, resulting in unstable pronunciation and speaker similarity. In this letter, we propose LCG-VC, which achieves zero-shot VC by integrating 
-context enhanced speech generation based on language model. Specifically, LCG-VC is performed as a two-stage language modeling to convert coarse codec acoustic tokens and reconstruct the fine sequentially. For coarse acoustic modeling, to enhance context learning and facilitate better disentanglement between content and speaker, we utilize a masked prefix language model. This model is achieved by a mask prediction strategy with two types of language modeling masks to recover masked content with learned context and generate target speech from speaker timbre and corrupt content. Besides, an external language model is introduced further to ensure speech generation stability with encoded local acoustic context. This model utilizes window attention to understand the local relation in acoustic space and participate in coarse acoustic modeling. Finally, a non-autoregressive prefix language model reconstructs fine acoustic tokens from the coarse. Experiments on large-scale speech data show that LCG-VC outperforms the baseline system on the zero-shot VC, and the ablation analysis indicates the good design of LCG-VC. </p>
+<p>Zero-shot voice conversion (VC) converts source speech into any speaker's voice using only one utterance without model updates. Existing methods cannot generalize well to unseen speakers since limited speaker diversity in small speech data. Recently, language model-based methods have shown impressive results in zero-shot audio generation. Inspired by this, we attempt to explore the language model for zero-shot VC. However, taking the origin semantic and acoustic tokens from HuBERT and SoundStream as VC input, the language model has difficulty capturing content and speaker information from such lengthy and inadequately decoupled input. And the generation diversity of the language model may lead to unexpected outcomes during inference. To address these problems, we propose a language model-based VC (LM-VC), which is a two-stage language modeling technique that first generates coarse acoustic tokens that recover content and speaker identity, and reconstructs the fine for acoustic details. First, to enhance content maintenance and facilitates better disentanglement between content and speaker during coarse acoustic modeling, we utilize a masked prefix language model that employs a mask prediction strategy. This model is encouraged to recover masked content from the surrounding context and generate target speech from speaker timbre and corrupt content. Second, to further ensure speech generation stability, an external language model, which utilizes window attention to understand the local relation in acoustic space, is introduced to participate in coarse acoustic modeling with shallow fusion. Finally, a prefix language model reconstructs fine acoustic tokens from the coarse. Experiments on large-scale speech data show that LM-VC outperforms a language model-based baseline system on the zero-shot VC in terms of speech naturalness and speaker similarity.</p>
 <br><br>
 
 <center><img src='fig/framework.jpg' width=400px></center>
@@ -56,7 +55,7 @@ Comparison Systems
 <ul>
 <li>VALL-E: text-based topline</li>
 <li>AudioLM-VC: a varint of AuidoLM for zero-shot VC</li>
-<li>LCG-VC: our proposed model</li>
+<li>LM-VC: our proposed model</li>
 </ul>
 </blockquote>
 <h2>3. Demos <a name="ID"></a></h2>
@@ -72,7 +71,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>VALL-E<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>AudioLM-VC<strong></td>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>LCG-VC (Proposed)<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>LM-VC (Proposed)<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>w/o MPLM<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>w/o ELM</strong><strong></td>
     </tr>
@@ -178,53 +177,56 @@ Comparison Systems
 
 
 
-<h2>4. More Demos (Only for Academic) <a name="MD"></a></h2>
+<h2>4. More Demos <a name="MD"></a></h2>
 
 <table>
   <tbody>
     <tr>
       <td style="text-align: center; width: 150px;" rowspan=2><strong>Source Speech<strong></td>
-        <td style="text-align: center; width: 150px;" colspan=4><strong>English Speaker<strong></td>
-          <td style="text-align: center; width: 150px;" colspan=3><strong>Chinese Speaker<strong></td>
+        <td style="text-align: center; width: 150px;" colspan=8><strong>Target Speaker<strong></td>
     </tr>
     <tr>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>Obama<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/obama_08.wav"></audio></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>Tom<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/Tom_Hiddleston.wav"></audio></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>Emma<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/emma.wav"></audio></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>Benidict</strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/Benedict_R.wav"></audio></td>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>LX<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/luo_01.wav"></audio></td>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>LYH<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/lyh_01.wav"></audio></td>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>LZL<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/lzl_112001.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Ningguang<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/ningguang_2.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Zhongli<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/zhongli_2.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Kaeya<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/kaiya_R.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Kamizato Ayato<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/linhua_R.wav"></audio></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>Sangonomiya Kokomi<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/xinh_R.wav"></audio></td>
     </tr>
     <tr>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0024_6db.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_obama_08.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/bdl_arctic_a0024_Tom_Hiddleston.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_emma.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_Benedict_R.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_luo_01.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_lyh_01.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_lzl_112001.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_ningguang_2.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_zhongli_2.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_kaiya_R.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_linhua_R.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_xinh_R.wav"></audio></td>
     </tr>
 
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF4_ENG_0048_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_obama_08.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/EF4_ENG_0048_0_Tom_Hiddleston.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_emma.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_Benedict_R.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_luo_01.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_lyh_01.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_lzl_112001.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_ningguang_2.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_zhongli_2.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_kaiya_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_linhua_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_xinh_R.wav"></audio></td>
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EM5_ENG_0018_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_obama_08.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/EM5_ENG_0018_0_Tom_Hiddleston.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_emma.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_Benedict_R.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_luo_01.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_lyh_01.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_lzl_112001.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_ningguang_2.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_zhongli_2.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_kaiya_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_linhua_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_xinh_R.wav"></audio></td>
 
 
   </tr>
