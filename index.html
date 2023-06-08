@@ -59,7 +59,7 @@
 <blockquote>
 Comparison Systems
 <ul>
-<li>VALL-E: text-based topline</li>
+<li>YourTTS: zero-shot VC</li>
 <li>AudioLM-VC: a varint of AuidoLM for zero-shot VC</li>
 <li>LM-VC: our proposed model</li>
 </ul>
@@ -70,12 +70,11 @@ Comparison Systems
     <tr>
         <td style="text-align: center; width: 150px;" rowspan=2><strong>Target Speaker<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=2><strong>Source Speech<strong></td>
-        <td style="text-align: center; width: 150px;" colspan=1><strong>Text-based Topline<strong></td>
-      <td style="text-align: center; width: 150px;" colspan=2><strong>Zero-shot VC Methods<strong></td>
+      <td style="text-align: center; width: 150px;" colspan=3><strong>Zero-shot VC Methods<strong></td>
         <td style="text-align: center; width: 150px;" colspan=2><strong>Abalation<strong></td>
     </tr>
     <tr>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>VALL-E<strong></td>
+      <td style="text-align: center; width: 150px;" rowspan=1><strong>YourTTS<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>AudioLM-VC<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>LM-VC (Proposed)<strong></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>w/o MPLM<strong></td>
@@ -84,7 +83,7 @@ Comparison Systems
     <tr>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
@@ -94,7 +93,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_p315_046.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_p315_046.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/bdl_arctic_a0006_p315_046.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/bdl_arctic_a0006_p315_046.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/bdl_arctic_a0006_p315_046.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/bdl_arctic_a0006_p315_046.wav"></audio></td>
@@ -102,7 +101,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/bdl_arctic_a0009_EM1_ENG_0109_0.wav"></audio></td>
@@ -110,7 +109,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/clb_arctic_a0006_EM7_ENG_0061_0.wav"></audio></td>
@@ -118,7 +117,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/clb_arctic_a0006_rms_arctic_a0017.wav"></audio></td>
@@ -126,7 +125,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF1_ENG_0005_0_slt_arctic_a0025.wav"></audio></td>
@@ -134,7 +133,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF3_ENG_0027_0_clb_arctic_a0009.wav"></audio></td>
@@ -143,7 +142,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
@@ -151,7 +150,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/EF4_ENG_0036_0_EF3_ENG_0030_0.wav"></audio></td>
@@ -160,7 +159,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/p225_004_bdl_arctic_a0002.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/p225_004_bdl_arctic_a0002.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/p225_004_bdl_arctic_a0002.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/p225_004_bdl_arctic_a0002.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/p225_004_bdl_arctic_a0002.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/p225_004_bdl_arctic_a0002.wav"></audio></td>
@@ -168,7 +167,7 @@ Comparison Systems
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/spk/rms_arctic_a0019_p225_007.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/rms_arctic_a0019_p225_007.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/valle/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/yourtts/rms_arctic_a0019_p225_007.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/audiolm/rms_arctic_a0019_p225_007.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/lmvc/rms_arctic_a0019_p225_007.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/woMPLM/rms_arctic_a0019_p225_007.wav"></audio></td>
@@ -199,7 +198,6 @@ Comparison Systems
         <td style="text-align: center; width: 150px;" rowspan=1><strong>Sangonomiya Kokomi<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/xinh_R.wav"></audio></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>Tom<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/Tom_Hiddleston.wav"></audio></td>
       <td style="text-align: center; width: 150px;" rowspan=1><strong>Emma<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/emma.wav"></audio></td>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>Benidict</strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/Benedict_R.wav"></audio></td>
     </tr>
     <tr>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/bdl_arctic_a0024_6db.wav"></audio></td>
@@ -210,7 +208,6 @@ Comparison Systems
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_xinh_R.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/bdl_arctic_a0024_Tom_Hiddleston.wav"></audio></td>
         <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_emma.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_Benedict_R.wav"></audio></td>
     </tr>
 
     <tr>
@@ -222,7 +219,6 @@ Comparison Systems
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_xinh_R.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/EF4_ENG_0048_0_Tom_Hiddleston.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_emma.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EF4_ENG_0048_0_Benedict_R.wav"></audio></td>
     <tr>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/source/EM5_ENG_0018_0.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_ningguang_2.wav"></audio></td>
@@ -232,7 +228,6 @@ Comparison Systems
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_xinh_R.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample//more/EM5_ENG_0018_0_Tom_Hiddleston.wav"></audio></td>
       <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_emma.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/more/EM5_ENG_0018_0_Benedict_R.wav"></audio></td>
 
 
   </tr>
@@ -295,21 +290,21 @@ Comparison Systems
 <table>
   <tbody>
     <tr>
-      <td style="text-align: center; width: 150px;" rowspan=2><strong>Source Speech<strong></td>
-        <td style="text-align: center; width: 150px;" colspan=2><strong>Target Speaker<strong></td>
+      <td style="text-align: center; width: 300px;" rowspan=2><strong>Source Speech<strong></td>
+        <td style="text-align: center; width: 300px;" colspan=2><strong>Target Speaker<strong></td>
     </tr>
     <tr>
-      <td style="text-align: center; width: 150px;" rowspan=1><strong>Obama<strong><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/obama.wav"></audio></td>
-        <td style="text-align: center; width: 150px;" rowspan=1><strong>Sangonomiya Kokomi<strong><audio style="width: 150px;" controls="" preload="none" src="sample/spk/xinh_R.wav"></audio></td>
+      <td style="text-align: center; width: 300px;" rowspan=1><strong>Obama<strong><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/obama.wav"></audio></td>
+        <td style="text-align: center; width: 300px;" rowspan=1><strong>Sangonomiya Kokomi<strong><audio style="width: 300px;" controls="" preload="none" src="sample/spk/xinh_R.wav"></audio></td>
     </tr>
     <tr>
-      <td style="text-align: center"><strong>Emma</strong><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/emma-read_R.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/tom-read_obama.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/emma-read_xinhai.wav"></audio></td>
+      <td style="text-align: center"><strong>Emma</strong><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/emma-read_R.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/tom-read_obama.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/emma-read_xinhai.wav"></audio></td>
       <tr>
-        <td style="text-align: center "><strong>Tom</strong><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/tom-read.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/tom-read_obama.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 150px;" controls="" preload="none" src="sample/librilight/more/tom-read_xinh.wav"></audio></td>
+        <td style="text-align: center "><strong>Tom</strong><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/tom-read.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/tom-read_obama.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/librilight/more/tom-read_xinh.wav"></audio></td>
 
   </tr>
 
